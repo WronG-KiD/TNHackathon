@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+/* Highlighting rows based on the source */
+.crawled_data {
+    background-color: lightyellow;
+}
+
+.honeypot_data {
+    background-color: lightcoral;
+}
+
+.tor_scraper {
+    background-color: lightgreen;
+}

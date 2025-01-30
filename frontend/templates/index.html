@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Web Data</title>
+    <link rel="stylesheet" href="/frontend/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dark Web Data</h1>
+
+        <h2>All URLs and Content from the Database</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>URL</th>
+                    <th>Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in all_urls %}
+                <tr class="{{ entry.source }}">
+                    <td><a href="{{ entry.url }}" target="_blank">{{ entry.url }}</a></td>
+                    <td>{{ entry.source | capitalize }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
