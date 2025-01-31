@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Data Analysis</title>
+    <link rel="stylesheet" href="/css/Dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">✖</button>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Dashboard.html">Dashboard</a></li>
+            <li><a href="threat.html">Threats</a></li>
+            <li><a href="vault.html">Vault</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Dashboard Area -->
+    <main class="dashboard">
+        <!-- Title and Description -->
+        <header>
+            <h1>Data Analysis Dashboard</h1>
+            <p>Monitor threats and data leaks with real-time insights.</p>
+        </header>
+
+        <!-- Dashboard Cards -->
+        <section class="cards">
+            <div class="card">
+                <h3>Active Threats</h3>
+                <p>120</p>
+            </div>
+            <div class="card">
+                <h3>Data Leaks Detected</h3>
+                <p>5</p>
+            </div>
+            <div class="card">
+                <h3>Real-Time Monitoring</h3>
+                <p>98% Uptime</p>
+            </div>
+        </section>
+
+        <!-- Charts Section -->
+        <section class="charts">
+            <div class="chart-container">
+                <h3>Threats Over Time</h3>
+                <canvas id="threatChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Data Leak Insights</h3>
+                <canvas id="leakChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Table Section -->
+        <section class="data-table">
+            <h3>Recent Data Activities</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Activity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/29/2025</td>
+                        <td>New threat detected</td>
+                        <td><span class="status active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>01/28/2025</td>
+                        <td>Data leak detected</td>
+                        <td><span class="status resolved">Resolved</span></td>
+                    </tr>
+                    <!-- More Rows -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="/js/dash.js"></script>
+</body>
+</html>
