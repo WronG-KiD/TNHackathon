@@ -1,27 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    background: #444;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.sidebar ul li:hover {
+    background: #007BFF;
+}
+
+.content {
+    margin-left: 260px;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+h1 {
+    color: #333;
+}
+
+.load-btn, .download-btn {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.load-btn:hover, .download-btn:hover {
+    background-color: #0056b3;
+}
+
+#table-container {
+    overflow-x: auto;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table, th, td {
-    border: 1px solid black;
 }
 
 th, td {
     padding: 10px;
+    border: 1px solid #ddd;
     text-align: left;
 }
 
-/* Highlighting rows based on the source */
-.crawled_data {
-    background-color: lightyellow;
+th {
+    background-color: #007BFF;
+    color: white;
 }
 
-.honeypot_data {
-    background-color: lightcoral;
+tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
-.tor_scraper {
-    background-color: lightgreen;
+.loading {
+    text-align: center;
+    font-weight: bold;
+    color: #555;
 }

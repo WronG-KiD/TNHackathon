@@ -1,30 +1,67 @@
-const API_BASE_URL = "http://127.0.0.1:5000/api/";
+const API_URL = "http://127.0.0.1:5000/api/merged_data";
 
-async function loadData(type) {
-    document.getElementById("data-table").innerHTML = `<tr><td colspan="4" class="loading">Loading ${type.replace('_', ' ')} data...</td></tr>`;
+async function loadData() {
+    document.getElementById("data-table").innerHTML = `<tr><td colspan="8" class="loading">Loading data...</td></tr>`;
 
-    const response = await fetch(API_BASE_URL + type);
-    const data = await response.json();
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
 
-    if (data.length === 0) {
-        document.getElementById("data-table").innerHTML = `<tr><td colspan="4">No data available</td></tr>`;
-        return;
+        if (data.length === 0) {
+            document.getElementById("data-table").innerHTML = `<tr><td colspan="8">No data available</td></tr>`;
+            return;
+        }
+
+        const tableContent = data.map(entry => `
+            <tr>
+                <td>${entry.sno}</td>
+                <td>${entry.id}</td>
+                <td>${entry.url}</td>
+                <td>${entry.access}</td>
+                <td>${entry.safe_or_not}</td>
+                <td>${entry.malicious_activity}</td>
+                <td>${entry.content}</td>
+                <td>${entry.mitigation_solution}</td>
+            </tr>
+        `).join("");
+
+        document.getElementById("data-table").innerHTML = tableContent;
+    } catch (error) {
+        document.getElementById("data-table").innerHTML = `<tr><td colspan="8">Error loading data</td></tr>`;
+        console.error("Error fetching data:", error);
     }
-
-    const tableContent = data.map(entry => `
-        <tr>
-            
-            <td>${entry.url || "N/A"}</td>
-            <td>${entry.category || "N/A"}</td>
-            <td>${entry.description || "N/A"}</td>
-            <td>${entry.content ? entry.content.substring(0, 100) + "..." : "No content"}</td>
-            <td>${entry.mitigation_steps || "N/A"}</td>
-        </tr>
-    `).join("");
-
-    document.getElementById("data-table").innerHTML = tableContent;
-
-    document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
-    document.querySelector(`button[onclick="loadData('${type}')"]`).classList.add("active");
 }
 
+function downloadCSV() {
+    let table = document.querySelector("table");
+    let rows = Array.from(table.querySelectorAll("tr"));
+    let csv = rows.map(row => {
+        return Array.from(row.querySelectorAll("td, th")).map(cell => `"${cell.innerText}"`).join(",");
+    }).join("\n");
+
+    let blob = new Blob([csv], { type: "text/csv" });
+    let a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "dark_web_data.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+function navigate(page) {
+    let title = document.getElementById("page-title");
+    switch (page) {
+        case "home":
+            title.innerText = "Dark Web Monitoring";
+            break;
+        case "scraped_data":
+            title.innerText = "search url";
+            break;
+        case "dash":
+            title.innerText = "Dark Web Monitoring Dashboard";
+            break;
+        case "vault":
+            title.innerText = "Dark Web Monitoring Data";
+            break;
+    }
+}
